@@ -164,7 +164,7 @@ template <> struct zeros_type_for_accum<AccumClass::FP>   { using type = float; 
 #elif __AIE_ARCH__ == 21 || __AIE_ARCH__ == 22
 template <> struct zeros_type_for_accum<AccumClass::FP>   { using type = bfloat16; };
 #endif
-#if __AIE_ARCH__ == 10 || __AIE_API_COMPLEX_FP32_EMULATION__
+#if __AIE_API_CFP32_SUPPORT__
 template <> struct zeros_type_for_accum<AccumClass::CFP>  { using type = cfloat;   };
 #endif
 
