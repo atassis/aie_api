@@ -45,12 +45,12 @@ struct  exact_acc64 {};
 
 #endif
 
-#if (__AIE_ARCH__ == 21 && __AIE_API_SCALAR_BFP_TYPES__ == 0) || __AIE_ARCH__ != 21
+#if !__AIE_API_SCALAR_BFP_TYPES__
 struct bfp16ebs8  {};
 struct bfp16ebs16 {};
 #endif
 
-#if (__AIE_ARCH__ == 22 && __AIE_API_SCALAR_MX_TYPES__ == 0) || __AIE_ARCH__ != 22
+#if !__AIE_API_SCALAR_MX_TYPES__
 struct mx4 {};
 struct mx6 {};
 struct mx9 {};
