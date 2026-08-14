@@ -107,7 +107,7 @@ template <> struct accum_class_for_tag<cacc72>       { static constexpr AccumCla
 template <> struct accum_class_for_tag<cacc80>       { static constexpr AccumClass value() { return AccumClass::CInt; } };
 #endif
 
-#if __AIE_ARCH__ == 10 || __AIE_API_COMPLEX_FP32_EMULATION__
+#if __AIE_API_CFP32_SUPPORT__
 template <> struct accum_class_for_tag<caccfloat>    { static constexpr AccumClass value() { return AccumClass::CFP;  } };
 #endif
 #endif
@@ -145,7 +145,7 @@ template <> struct accum_bits_for_tag<cacc72>        { static constexpr unsigned
 template <> struct accum_bits_for_tag<cacc80>        { static constexpr unsigned value() { return 80; } };
 #endif
 
-#if __AIE_ARCH__ == 10 || __AIE_API_COMPLEX_FP32_EMULATION__
+#if __AIE_API_CFP32_SUPPORT__
 template <> struct accum_bits_for_tag<caccfloat>     { static constexpr unsigned value() { return 32; } };
 #endif
 #endif
@@ -196,7 +196,7 @@ struct is_valid_accum_type
 template <AccumClass Class, unsigned Bits>
 struct accum_tag;
 
-#if __AIE_ARCH__ == 10 || __AIE_API_COMPLEX_FP32_EMULATION__
+#if __AIE_API_CFP32_SUPPORT__
 template <> struct accum_tag<AccumClass::CFP,  32> { using type = caccfloat; };
 #endif
 template <> struct accum_tag<AccumClass::FP,   32> { using type = accfloat;  };

@@ -287,7 +287,7 @@ struct default_twiddle_type
     using type = cint16;
 };
 
-#if __AIE_ARCH__ == 10 || __AIE_API_COMPLEX_FP32_EMULATION__
+#if __AIE_API_CFP32_SUPPORT__
 template <>
 struct default_twiddle_type<cfloat, cfloat>
 {
