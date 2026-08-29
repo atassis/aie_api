@@ -68,7 +68,7 @@ struct elementary_vector_bits_impl
         constexpr unsigned bits = std::min(vector_type::bits(), vector_ret_type::bits());
 
         // AIE1 supports element insert/extract for 128b only. Later architectures support it for 512b.
-        constexpr unsigned native_insert_bits = (__AIE_ARCH__ == 10)? 128 : 512;
+        constexpr unsigned native_insert_bits = arch::is(arch::AIE)? 128 : 512;
         constexpr unsigned num_loops = bits < native_insert_bits? 1 :
                                                                   bits / native_insert_bits;
 
