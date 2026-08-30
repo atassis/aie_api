@@ -324,7 +324,7 @@ private:
     __aie_inline
     auto load_twiddles(twiddle_type *& ptw0, twiddle_type *& ptw1, twiddle_type *& ptw2)
     {
-        constexpr unsigned lanes = __AIE_ARCH__ == 21 ? 8 : 16;
+        constexpr unsigned lanes = arch::is(arch::XDNA2) ? 8 : 16;
         vector<twiddle_type, lanes> tw0, tw1, tw2;
 
         tw0.insert(0, *(v8cint16*)ptw0);    ptw0 += 8;

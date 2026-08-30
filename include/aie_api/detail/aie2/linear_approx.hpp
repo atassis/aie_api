@@ -44,7 +44,7 @@ struct linear_approx<int8, lut<4, int8, int8>>
     template <unsigned Lanes>
     using accum_type = accum<acc32, Lanes>;
 
-    static constexpr unsigned acc_lanes = __AIE_ARCH__ == 20 ? 16 : 32;
+    static constexpr unsigned acc_lanes = arch::is(arch::AIE_ML) ? 16 : 32;
     using bias_type = accum<acc64, acc_lanes>;
 
 public:
@@ -245,7 +245,7 @@ public:
     __aie_inline
     accum_type<Vec::size()> compute(const Vec &input)
     {
-        constexpr unsigned mul_lanes = __AIE_ARCH__ == 20 ? 16 : 32;
+        constexpr unsigned mul_lanes = arch::is(arch::AIE_ML) ? 16 : 32;
 
         accum_type<mul_lanes> result;
         vector<int16, 16> input_ = input.template grow<16>();

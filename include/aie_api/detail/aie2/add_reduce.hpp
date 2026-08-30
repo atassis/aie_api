@@ -210,7 +210,7 @@ static constexpr auto get_add_reduce_mac_op()
 template <typename T, unsigned Elems> requires (!is_complex_v<T>)
 struct add_reduce_bits_impl<8, T, Elems>
 {
-    static constexpr unsigned acc_lanes = __AIE_ARCH__ == 20 ? 32 : 64;
+    static constexpr unsigned acc_lanes = arch::is(arch::AIE_ML) ? 32 : 64;
     using acc_type                      = accum<acc32, acc_lanes>;
     using vector_type                   = vector<T, Elems>;
 
@@ -247,7 +247,7 @@ struct add_reduce_bits_impl<8, T, Elems>
 template <typename T, unsigned Elems> requires (!is_complex_v<T>)
 struct add_reduce_bits_impl<16, T, Elems>
 {
-    static constexpr unsigned acc_lanes = __AIE_ARCH__ == 20 ? 16 : 32;
+    static constexpr unsigned acc_lanes = arch::is(arch::AIE_ML) ? 16 : 32;
     using acc_type                      = accum<acc64, acc_lanes>;
     using vector_type                   = vector<T, Elems>;
 
@@ -352,7 +352,7 @@ struct add_reduce_bits_impl_float_common
 {
     using vector_type = vector<T, Elems>;
 
-    static constexpr bool reduce_via_mmul = __AIE_ARCH__ == 22 && type_bits_v<T> == 16;
+    static constexpr bool reduce_via_mmul = arch::is(arch::AIE_MLv2) && type_bits_v<T> == 16;
 
     __aie_inline
     static auto get_mul_ops() {

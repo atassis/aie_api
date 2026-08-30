@@ -510,7 +510,7 @@ struct sliding_mul_bits_impl<Lanes, Points, 1, 1, 1, 64, CoeffBits, DataBits, Co
     };
 
     // Do not apply this optimization to AIE2p, until shuffle optimizations are ported there.
-    static constexpr bool hoist_16b_interleaves = __AIE_ARCH__ == 22 && std::is_same_v<data_type, cint32>;
+    static constexpr bool hoist_16b_interleaves = arch::is(arch::AIE_MLv2) && std::is_same_v<data_type, cint32>;
 
     // Splits a vector into high and low 16b halves
     // This is done when the multiplication emulation splits the input data in 16bit halves
